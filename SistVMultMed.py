@@ -28,17 +28,12 @@ def valid_letter(question):
                 print("Ingresó caracteres especiales o números")
         except ValueError:
             print("\nIngrese solo letras y espacios, intente de nuevo")
-def validar_date(msj):
+def validar_date():
     while True:
-        print("Ingrese la fecha en la que se realizó el estudio")
-        print("Ingrese el día: ")
-        dia = valid_int(msj)
-
-        print("Ingrese el mes: ")
-        mes = valid_int(msj)
-
-        print("Ingresar el año: ")
-        año = valid_int(msj)
+        print("Ingrese la fecha")
+        dia = valid_int("Ingrese el dia: ")
+        mes = valid_int("Ingrese el mes: ")
+        año = valid_int("Ingrese el año: ")
 
         try:
             fecha = datetime(año, mes, dia)
@@ -197,7 +192,7 @@ def main():
                 nombre=valid_letter("Ingrese el nombre de la mascota: ")
                 tipo=valid_letter("Ingrese el tipo de mascota (felino o canino): ")
                 peso=valid_float("Ingrese el peso de la mascota: ")
-                fecha=validar_date("Ingrese la fecha de ingreso (dia/mes/año): ")
+                fecha=validar_date()
                 nm=valid_int("Ingrese cantidad de medicamentos: ")
                 lista_med=[]
 
@@ -250,7 +245,7 @@ def main():
         elif menu == 4: # Ver medicamentos que se están administrando
             h = valid_int("Ingrese la historia clínica de la mascota: ")
             medicamento = servicio_hospitalario.verMedicamento(h) 
-            if medicamento != None: 
+            if medicamento is not None: 
                 print("Los medicamentos suministrados son: ")
                 for m in medicamento:   
                     print(f"\n- {m.verNombre()}")
@@ -271,9 +266,9 @@ def main():
             resultado_operacion = servicio_hospitalario.eliminarMedicamento(h)
 
             if resultado_operacion == True:
-                print("Mascota eliminada del sistema con exito")
+                print("Medicamento eliminado del sistema con exito")
             else:
-                print("No se ha podido eliminar la mascota")
+                print("No se ha podido eliminar el medicamento")
 
         
         elif menu==7:
